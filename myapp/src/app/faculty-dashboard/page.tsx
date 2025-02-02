@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
 
 interface Question {
@@ -13,10 +13,15 @@ const TeacherPortal: React.FC = () => {
     const [question, setQuestion] = useState<string>('');
     const [rubrics, setRubrics] = useState<string>('');
     const [marks, setMarks] = useState<number>(0);
-    const [questions, setQuestions] = useState<Question[]>(() => {
+    const [questions, setQuestions] = useState<Question[]>([]);
+
+    useEffect(() => {
+        // Load questions from localStorage only on the client side
         const savedQuestions = localStorage.getItem('questions');
-        return savedQuestions ? JSON.parse(savedQuestions) : [];
-    });
+        if (savedQuestions) {
+            setQuestions(JSON.parse(savedQuestions));
+        }
+    }, []); // Empty dependency array to run once when the component mounts
 
     const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
