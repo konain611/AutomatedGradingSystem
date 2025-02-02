@@ -11,8 +11,8 @@ export default function Login() {
   const router = useRouter();
 
   const credentials = {
-    student: { username: "student", password: "student123" },
-    faculty: { username: "faculty", password: "faculty123" },
+    student: { username: "s", password: "s" },
+    faculty: { username: "f", password: "f" },
   };
 
   const handleLogin = (e: React.FormEvent<HTMLFormElement>) => {
