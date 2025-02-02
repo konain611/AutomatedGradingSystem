@@ -83,7 +83,7 @@ const StudentPortal: React.FC = () => {
         </Link>
       </div>
       <h1 className="text-[2.8rem] font-bold mt-1 mb-10 text-center text-white bg-black shadow-lg hover:cursor-pointer hover:text-black hover:bg-white">
-        Student's Portal
+        Student Portal
       </h1>
     <div className="p-8">
 

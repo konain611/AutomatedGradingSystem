@@ -51,7 +51,7 @@ const TeacherPortal: React.FC = () => {
         </Link>
       </div>
       <h1 className="text-[2.8rem] font-bold mt-1 mb-10 text-center text-white bg-black shadow-lg hover:cursor-pointer hover:text-black hover:bg-white">
-        Teacher's Portal
+        Faculty Portal
       </h1>
 
       <div className="min-h-screen bg-white flex items-start justify-center p-8 gap-8">
