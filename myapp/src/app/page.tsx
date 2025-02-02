@@ -24,6 +24,11 @@ export default function Login() {
       router.push(userType === "student" ? "/student-dashboard" : "/faculty-dashboard");
     } else {
       setError("Invalid Username or Password");
+      setUsername(""); 
+      setPassword("");
+      setTimeout(()=> {
+        setError("");
+      }, 1500 );
     }
   };
 
@@ -58,7 +63,8 @@ export default function Login() {
           </button>
         </div>
 
-        {error && <p className="text-red-600 text-sm text-center">{error}</p>}
+        {error && <p className="text-red-600 text-sm text-center animate-fade-in">{error}</p>}
+
 
         <form onSubmit={handleLogin} className="space-y-4">
           <input
