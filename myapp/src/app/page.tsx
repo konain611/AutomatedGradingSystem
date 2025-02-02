@@ -9,6 +9,7 @@ export default function Login() {
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const router = useRouter();
+  const [showPassword, setShowPassword] = useState(false); // Add this line
 
   const credentials = {
     student: { username: "student", password: "student123" },
@@ -44,13 +45,13 @@ export default function Login() {
           <h2 className="text-4xl font-semibold text-center mb-7 uppercase ">
             {userType === "student" ? "Student Login" : "Faculty Login"}
           </h2>
-<br></br>
+          <br></br>
           <div className="flex justify-center mb-8 space-x-4">
             <button
               onClick={() => setUserType("student")}
               className={`px-5 py-3  rounded transition-all duration-300 border border-black ${userType === "student"
-                  ? "bg-black text-white"
-                  : "bg-white text-black hover:bg-black hover:text-white"
+                ? "bg-black text-white"
+                : "bg-white text-black hover:bg-black hover:text-white"
                 }`}
             >
               Student
@@ -58,8 +59,8 @@ export default function Login() {
             <button
               onClick={() => setUserType("faculty")}
               className={`px-5 py-3 rounded transition-all duration-300 border border-black ${userType === "faculty"
-                  ? "bg-black text-white"
-                  : "bg-white text-black hover:bg-black hover:text-white"
+                ? "bg-black text-white"
+                : "bg-white text-black hover:bg-black hover:text-white"
                 }`}
             >
               Faculty
@@ -77,13 +78,22 @@ export default function Login() {
               onChange={(e) => setUsername(e.target.value)}
               className="w-full px-4 py-2 rounded border border-black bg-white focus:border-black focus:outline-none"
             />
-            <input
-              type="password"
-              placeholder="Password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              className="w-full px-4 py-2 rounded border border-black bg-white focus:border-black focus:outline-none"
-            />
+            <div className="relative">
+  <input
+    type={showPassword ? "text" : "password"} // Toggle between text and password
+    placeholder="Password"
+    value={password}
+    onChange={(e) => setPassword(e.target.value)}
+    className="w-full px-4 py-2 rounded border border-black bg-white focus:border-black focus:outline-none pr-10" // Add pr-10 for padding-right
+  />
+  <button
+    type="button"
+    onClick={() => setShowPassword(!showPassword)} // Toggle password visibility
+    className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-600" // Position the button
+  >
+    {showPassword ? "👁️" : "👁️‍🗨️"} {/* You can replace these with icons from a library */}
+  </button>
+</div>
             <button
               type="submit"
               className="w-full bg-black text-white py-2 rounded transition-all duration-300 hover:bg-gray-800"
