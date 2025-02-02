@@ -90,27 +90,34 @@ const StudentPortal: React.FC = () => {
 
       {/* Questions Section */}
       <div className="flex flex-col items-center w-full">
-        {questions.map((q, index) => (
-          <div key={index} className="w-3/4 bg-gray-100 p-6 mb-6 shadow-md rounded-lg">
-            <h2 className="text-lg font-semibold mb-2">{index + 1}. {q.question}</h2>
-            <textarea
-              onChange={(e) => handleAnswerChange(q.question, e.target.value)}
-              value={answers[q.question] || ""}
-              placeholder="Write your answer here..."
-              className="w-full h-24 p-3 border rounded-md text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
-            />
-            <button
-              onClick={() => handleSubmit(q.question)}
-              className="w-full mt-3 bg-black text-white font-bold py-2 px-4 rounded hover:bg-gray-800 transition"
-            >
-              Submit Answer
-            </button>
-            {feedbacks[q.question] && (
-              <p className="mt-3 text-sm font-bold text-center text-green-500">{feedbacks[q.question]}</p>
-            )}
-          </div>
-        ))}
+  {questions.length === 0 ? (
+    <p className="text-xl text-gray-600 font-semibold mt-10">
+      No questions added by faculty.
+    </p>
+  ) : (
+    questions.map((q, index) => (
+      <div key={index} className="w-3/4 bg-gray-100 p-6 mb-6 shadow-md rounded-lg">
+        <h2 className="text-lg font-semibold mb-2">{index + 1}. {q.question}</h2>
+        <textarea
+          onChange={(e) => handleAnswerChange(q.question, e.target.value)}
+          value={answers[q.question] || ""}
+          placeholder="Write your answer here..."
+          className="w-full h-24 p-3 border rounded-md text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
+        />
+        <button
+          onClick={() => handleSubmit(q.question)}
+          className="w-full mt-3 bg-black text-white font-bold py-2 px-4 rounded hover:bg-gray-800 transition"
+        >
+          Submit Answer
+        </button>
+        {feedbacks[q.question] && (
+          <p className="mt-3 text-sm text-green-600">{feedbacks[q.question]}</p>
+        )}
       </div>
+    ))
+  )}
+</div>
+
     </div>
     </div>
   );
