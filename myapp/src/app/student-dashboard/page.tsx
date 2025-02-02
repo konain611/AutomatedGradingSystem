@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import Link from 'next/link';
 
 interface Question {
@@ -12,8 +12,8 @@ interface Question {
 const StudentPortal: React.FC = () => {
     const [answers, setAnswers] = useState<{ [key: string]: string }>({});
     const [feedback, setFeedback] = useState<string>('');
-    const [questions, setQuestions] = useState<Question[]>(() => {
-        // Load questions from local storage on initial render
+    const [questions] = useState<Question[]>(() => {
+
         const savedQuestions = localStorage.getItem('questions');
         return savedQuestions ? JSON.parse(savedQuestions) : [];
     });
