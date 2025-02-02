@@ -10,19 +10,16 @@ interface Question {
 }
 
 const StudentPortal: React.FC = () => {
+    const [questions, setQuestions] = useState<Question[]>([]);
     const [answers, setAnswers] = useState<{ [key: string]: string }>({});
     const [feedback, setFeedback] = useState<string>('');
-    const [questions, setQuestions] = useState<Question[]>([]);
 
     useEffect(() => {
-        // Only access localStorage in the client-side environment
-        if (typeof window !== 'undefined') {
-            const savedQuestions = localStorage.getItem('questions');
-            if (savedQuestions) {
-                setQuestions(JSON.parse(savedQuestions));
-            }
+        const savedQuestions = localStorage.getItem('questions');
+        if (savedQuestions) {
+            setQuestions(JSON.parse(savedQuestions));
         }
-    }, []); // Empty dependency array to run once when the component mounts
+    }, []); // Runs only once after the component mounts
 
     const handleAnswerChange = (question: string, answer: string) => {
         setAnswers({ ...answers, [question]: answer });
@@ -55,36 +52,42 @@ const StudentPortal: React.FC = () => {
 
     return (
         <div>
-            <title>Student Portal</title>
+
             <div className="relative">
                 <Link href="/">
                     <button
                         type="button"
-                        className="absolute top-4 right-4 bg-black text-white font-bold py-2 px-4 rounded hover:bg-gray-800 focus:outline-none focus:shadow-outline"
+                        className="absolute  right-4 bg-black text-white font-bold py-2 px-4 rounded hover:bg-gray-800 focus:outline-none focus:shadow-outline"
                     >
                         Log Out
                     </button>
                 </Link>
             </div>
 
-            <h1 className="text-3xl font-bold mb-6 text-black">Student Portal</h1>
-            {questions.map((q, index) => (
-                <div key={index} className="mb-4">
-                    <h2>{q.question}</h2>
-                    <textarea
-                        onChange={(e) => handleAnswerChange(q.question, e.target.value)}
-                        placeholder="Write your answer here..."
-                        className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                    />
-                    <button
-                        onClick={() => handleSubmit(q.question)}
-                        className="bg-black text-white font-bold py-2 px-4 rounded hover:bg-gray-800 focus:outline-none focus:shadow-outline"
-                    >
-                        Submit Answer
-                    </button>
-                </div>
-            ))}
-            {feedback && <p className="text-green-600">{feedback}</p>}
+            <div className="flex justify-center mt-8">
+                <h1 className="text-3xl font-bold text-black">Student Portal</h1>
+            </div>
+            <div className="flex flex-col items-center justify-center h-screen p-4 border-black">
+                <h1 className="text-2xl font-bold mb-6 text-black">Student Portal</h1>
+
+                {questions.map((q, index) => (
+                    <div key={index} className="mb-4">
+                        <h2>{q.question}</h2>
+                        <textarea
+                            onChange={(e) => handleAnswerChange(q.question, e.target.value)}
+                            placeholder="Write your answer here..."
+                            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                        />
+                        <button
+                            onClick={() => handleSubmit(q.question)}
+                            className="bg-black text-white font-bold py-2 px-4 rounded hover:bg-gray-800 focus:outline-none focus:shadow-outline"
+                        >
+                            Submit Answer
+                        </button>
+                    </div>
+                ))}
+                {feedback && <p className="text-green-600">{feedback}</p>}
+            </div>
         </div>
     );
 };

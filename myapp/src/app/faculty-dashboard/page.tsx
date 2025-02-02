@@ -80,7 +80,7 @@ const TeacherPortal: React.FC = () => {
                             id="rubrics"
                             value={rubrics}
                             onChange={(e) => setRubrics(e.target.value)}
-                            placeholder="Improves heart health → 2 marks"
+                            placeholder="Improves heart health → 2 marks (comma separated)"
                             required
                             className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                         />
