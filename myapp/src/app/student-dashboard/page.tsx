@@ -55,6 +55,7 @@ const StudentPortal: React.FC = () => {
 
     return (
         <div>
+            <title>Student Portal</title>
             <div className="relative">
                 <Link href="/">
                     <button

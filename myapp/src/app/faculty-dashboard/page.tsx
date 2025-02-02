@@ -42,6 +42,8 @@ const TeacherPortal: React.FC = () => {
 
     return (
         <div>
+            <title>Faculty Portal</title>
+
             <div className="relative">
                 <Link href="/">
                     <button

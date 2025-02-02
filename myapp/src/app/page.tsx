@@ -29,6 +29,7 @@ export default function Login() {
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-white text-black">
+      <title>AGS Login</title>
       <div className="w-full max-w-md bg-white p-8 rounded-lg shadow-lg border border-gray-600">
         <h2 className="text-2xl font-semibold text-center mb-6 uppercase">
           {userType === "student" ? "Student Portal" : "Faculty Login"}
