@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
 
 interface Question {
@@ -12,11 +12,17 @@ interface Question {
 const StudentPortal: React.FC = () => {
     const [answers, setAnswers] = useState<{ [key: string]: string }>({});
     const [feedback, setFeedback] = useState<string>('');
-    const [questions] = useState<Question[]>(() => {
+    const [questions, setQuestions] = useState<Question[]>([]);
 
-        const savedQuestions = localStorage.getItem('questions');
-        return savedQuestions ? JSON.parse(savedQuestions) : [];
-    });
+    useEffect(() => {
+        // Only access localStorage in the client-side environment
+        if (typeof window !== 'undefined') {
+            const savedQuestions = localStorage.getItem('questions');
+            if (savedQuestions) {
+                setQuestions(JSON.parse(savedQuestions));
+            }
+        }
+    }, []); // Empty dependency array to run once when the component mounts
 
     const handleAnswerChange = (question: string, answer: string) => {
         setAnswers({ ...answers, [question]: answer });
@@ -78,8 +84,7 @@ const StudentPortal: React.FC = () => {
                 </div>
             ))}
             {feedback && <p className="text-green-600">{feedback}</p>}
-            </div>
-
+        </div>
     );
 };
 
