@@ -4,7 +4,7 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 
 export default function Login() {
-  const [userType, setUserType] = useState("student");
+  const [userType, setUserType] = useState<'student' | 'faculty'>("student");
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
@@ -15,7 +15,7 @@ export default function Login() {
     faculty: { username: "faculty", password: "faculty123" },
   };
 
-  const handleLogin = (e) => {
+  const handleLogin = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (
       username === credentials[userType].username &&
