@@ -40,7 +40,7 @@ export default function Login() {
 
       <div className=" mt-[6.5rem] flex items-center justify-center bg-white text-black ">
         <title>AGS Login</title>
-        <div className="w-full max-w-md bg-white p-10 rounded-lg shadow-lg border border-gray-600">
+        <div className="w-full max-w-md bg-white p-10 rounded-lg shadow-2xl border border-gray-600">
           <h2 className="text-4xl font-semibold text-center mb-7 uppercase ">
             {userType === "student" ? "Student Login" : "Faculty Login"}
           </h2>

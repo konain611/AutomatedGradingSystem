@@ -53,21 +53,18 @@ const StudentPortal: React.FC = () => {
     return (
         <div>
 
-            <div className="relative">
-                <Link href="/">
-                    <button
-                        type="button"
-                        className="absolute  right-4 bg-black text-white font-bold py-2 px-4 rounded hover:bg-gray-800 focus:outline-none focus:shadow-outline"
-                    >
-                        Log Out
-                    </button>
-                </Link>
-            </div>
+<div className="relative">
+        <Link href="/">
+          <button className="absolute top-3 right-4 bg-white text-black font-bold py-2 px-4 rounded hover:text-red-600">
+            Log Out
+          </button>
+        </Link>
+      </div>
+      <h1 className="text-[2.8rem] font-bold mt-1 mb-10 text-center text-white bg-black shadow-lg hover:cursor-pointer hover:text-black hover:bg-white">
+        Student's Portal
+      </h1>
 
-            <div className="flex justify-center mt-8">
-                <h1 className="text-3xl font-bold text-black">Student Portal</h1>
-            </div>
-            <div className="flex flex-col items-center justify-center h-screen p-4 border-black">
+            <div className="flex flex-row items-center justify-center h-screen p-4 border-black">
                 <h1 className="text-2xl font-bold mb-6 text-black">Student Portal</h1>
 
                 {questions.map((q, index) => (
